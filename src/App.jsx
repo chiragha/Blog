@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './components/Header/Navbar'
 import Banner from './components/Banner/Banner';
 import CustomCursor from "./components/CustomCursor";
-import Expertise from './components/Expertise/expertise';
+import Expertise from './components/Expertise/Expertise';
 import MyWork from './components/MyWork/MyWork';
 import Experience from './components/Experience/Experience';
 import Footer from './components/Footer/Footer';
