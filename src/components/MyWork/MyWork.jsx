@@ -1,10 +1,10 @@
 import React from "react";
-import pic1 from "../../assets/1.png";
-import pic2 from "../../assets/2.png";
-import pic3 from "../../assets/3.png";
-import pic4 from "../../assets/4.png";
-import pic5 from "../../assets/5.avif";
-import pic6 from "../../assets/6.avif";
+import pic1 from "../../assets/img1.png";
+import pic2 from "../../assets/img2.png";
+import pic3 from "../../assets/img3.png";
+import pic4 from "../../assets/img4.png";
+import pic5 from "../../assets/img5.avif";
+import pic6 from "../../assets/img6.avif";
 
 
 const projects = [
