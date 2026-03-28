@@ -1,25 +1,20 @@
-import React from 'react'
-import Navbar from './components/Header/Navbar'
-import Banner from './components/Banner/Banner';
+import React, { lazy } from "react";
 import CustomCursor from "./components/CustomCursor";
-import Expertise from './components/Expertise/Expertise';
-import MyWork from './components/MyWork/MyWork';
-import Experience from './components/Experience/Experience';
-import Footer from './components/Footer/Footer';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// Lazy load ONLY pages (not sections)
+const Home = lazy(() => import("./pages/Home"));
 
-const App = () => {
+export default function App() {
   return (
     <div>
       <CustomCursor />
-      <Navbar />
-      <Banner />
-      <Expertise />
-      <MyWork />
-      <Experience />
-      <Footer />  
-    </div>
-  )
-}
 
-export default App
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
+    </div>
+  );
+}

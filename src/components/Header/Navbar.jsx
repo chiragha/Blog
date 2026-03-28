@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,27 +17,76 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Navbar animation
+  const navVariants = {
+    hidden: { y: -80, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  // Stagger menu
+  const menuContainer = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const menuItem = {
+    hidden: { y: -10, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
+
+  // Mobile menu animation
+  const mobileMenu = {
+    hidden: { opacity: 0, y: -20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.2 },
+    },
+  };
+
   return (
-    <header id="home"
+    <motion.header
+      initial="hidden"
+      animate="show"
+      variants={navVariants}
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 
       ${scrolled ? "bg-[#0f172a]/90 backdrop-blur-md py-4" : "bg-[#0f172a] py-6"}`}
     >
       <nav
-        className={`max-w-6xl mx-auto flex items-center transition-all text-amber-50 duration-500 px-4 h-12
+        className={`max-w-6xl mx-auto flex items-center text-amber-50 px-4 h-12
         ${scrolled ? "justify-center" : "justify-between"}`}
       >
         {/* Logo */}
-        <div
+        <motion.div
+          initial={{ x: -40, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
           className={`text-3xl font-semibold tracking-wide transition-all duration-500
           ${scrolled ? "opacity-0 scale-90 w-0 overflow-hidden" : "opacity-100"}`}
         >
           ShivaniSinha<span className="text-cyan-400"> . _</span>
-        </div>
+        </motion.div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest">
+        <motion.ul
+          variants={menuContainer}
+          initial="hidden"
+          animate="show"
+          className="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest"
+        >
           {menu.map((item) => (
-            <li key={item}>
+            <motion.li key={item} variants={menuItem}>
               <a
                 href={`#${item}`}
                 className="flex items-center gap-2 hover:text-cyan-400 transition"
@@ -44,38 +94,54 @@ export default function Navbar() {
                 <span className="opacity-60">//</span>
                 <span>{item}</span>
               </a>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
 
-        {/* Hamburger (mobile) */}
+        {/* Hamburger */}
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </motion.div>
           </button>
         </div>
       </nav>
 
-      {/* moble menu */}
-      <div
-  className={`md:hidden bg-[#0f172a] overflow-hidden transition-all duration-500 ${
-    isOpen ? "max-h-96 py-6" : "max-h-0"
-  }`}
->
-  <ul className="flex flex-col gap-6 text-sm uppercase tracking-widest text-amber-50 px-6">
-    {menu.map((item) => (
-      <li key={item}>
-        <a
-          href={`#${item}`}
-          onClick={() => setIsOpen(false)}
-          className="block hover:text-cyan-400 transition"
-        >
-          {item}
-        </a>
-      </li>
-    ))}
-  </ul>
-</div>
-    </header>
+      {/* ✅ Mobile Menu (FIXED) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={mobileMenu}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="md:hidden bg-[#0f172a]"
+          >
+            <motion.ul
+              variants={menuContainer}
+              initial="hidden"
+              animate="show"
+              className="flex flex-col gap-6 text-sm uppercase tracking-widest text-amber-50 px-6 py-6"
+            >
+              {menu.map((item) => (
+                <motion.li key={item} variants={menuItem}>
+                  <a
+                    href={`#${item}`}
+                    onClick={() => setIsOpen(false)}
+                    className="block hover:text-cyan-400 transition"
+                  >
+                    {item}
+                  </a>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
