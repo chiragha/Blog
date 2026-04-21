@@ -4,7 +4,7 @@ import pic2 from "../../assets/cosmetic_project.gif";
 import pic3 from "../../assets/job_project.PNG";
 import pic4 from "../../assets/2d_game.PNG";
 import pic5 from "../../assets/nextjs.PNG";
-import pic6 from "../../assets/img6.avif";
+import pic6 from "../../assets/Capture1.PNG";
 import { motion } from "framer-motion";
 
 const projects = [
@@ -40,9 +40,9 @@ const projects = [
   },
   {
     id: 6,
-    title: "Creative Landing Page",
+    title: "SkillSync-Landing-Page",
     image: pic6,
-    link: "https://your-site-6.com",
+    link: "https://skill-sync-landing-page.vercel.app/",
   },
 ];
 
