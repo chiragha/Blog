@@ -1,13 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const menu = ["home", "expertise", "work", "experience", "contact"];
 
+  const handleNavigation = (section) => {
+    // If already on homepage
+    if (location.pathname === "/") {
+      const element = document.getElementById(section);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    } else {
+      // Go to homepage with hash
+      navigate(`/#${section}`);
+    }
+
+    setIsOpen(false);
+  };
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 80);
@@ -87,13 +106,13 @@ export default function Navbar() {
         >
           {menu.map((item) => (
             <motion.li key={item} variants={menuItem}>
-              <a
-                href={`#${item}`}
+              <button
+                onClick={() => handleNavigation(item)}
                 className="flex items-center gap-2 hover:text-cyan-400 transition"
               >
                 <span className="opacity-60">//</span>
                 <span>{item}</span>
-              </a>
+              </button>
             </motion.li>
           ))}
         </motion.ul>
@@ -129,13 +148,12 @@ export default function Navbar() {
             >
               {menu.map((item) => (
                 <motion.li key={item} variants={menuItem}>
-                  <a
-                    href={`#${item}`}
-                    onClick={() => setIsOpen(false)}
+                  <button
+                    onClick={() => handleNavigation(item)}
                     className="block hover:text-cyan-400 transition"
                   >
                     {item}
-                  </a>
+                  </button>
                 </motion.li>
               ))}
             </motion.ul>

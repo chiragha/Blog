@@ -7,6 +7,7 @@ import pic4 from "../assets/2d_game.PNG";
 import pic5 from "../assets/nextjs.PNG";
 import pic6 from "../assets/Capture1.PNG";
 import scraper from "../assets/scraper.PNG";
+import Navbar from "../components/Header/Navbar"
 
 const allProjects = [
   {
@@ -117,7 +118,9 @@ const card = {
 
 export default function AllProjects() {
   return (
-    <div className="min-h-screen bg-slate-900 text-white px-6 py-20">
+    <>
+    <Navbar />  
+   <div className="min-h-screen bg-slate-900 text-white px-6 pt-36 pb-20">
       <h1 className="text-4xl md:text-6xl font-bold text-center mb-16">
         All Projects
       </h1>
@@ -172,5 +175,6 @@ export default function AllProjects() {
         ))}
       </motion.div>
     </div>
+    </>
   );
 }

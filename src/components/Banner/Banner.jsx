@@ -3,7 +3,10 @@ import React from "react";
 
 export default function Banner() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-slate-950 text-white flex items-center justify-center">
+   <section
+  id="home"
+  className="relative h-screen w-full overflow-hidden bg-slate-950 text-white flex items-center justify-center"
+>
       {/* ===== Background Gradient ===== */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-black" />
 
