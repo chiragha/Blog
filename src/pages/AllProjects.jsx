@@ -6,6 +6,7 @@ import pic3 from "../assets/job_project.PNG";
 import pic4 from "../assets/2d_game.PNG";
 import pic5 from "../assets/nextjs.PNG";
 import pic6 from "../assets/Capture1.PNG";
+import scraper from "../assets/scraper.PNG";
 
 const allProjects = [
   {
@@ -56,14 +57,14 @@ const allProjects = [
     live: "https://website-react-context.vercel.app/",
     github: "https://github.com/your-repo",
   },
-  // {
-  //   id: 7,
-  //   title: "Cosmetic Website",
-  //   image: pic2,
-  //   desc: "React context based UI with dynamic state",
-  //   live: "https://website-react-context.vercel.app/",
-  //   github: "https://github.com/your-repo",
-  // },
+  {
+    id: 7,
+    title: "MERN-Hackernews-Scraper",
+    image: scraper,
+    desc: "React context based UI with dynamic state",
+    live: "https://mern-hackernews-scraper.vercel.app/",
+    github: "https://github.com/chiragha/MERN-Hackernews-Scraper",
+  },
   // {
   //   id: 8,
   //   title: "Cosmetic Website",
