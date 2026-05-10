@@ -6,6 +6,7 @@ import pic4 from "../../assets/2d_game.PNG";
 import pic5 from "../../assets/nextjs.PNG";
 import pic6 from "../../assets/Capture1.PNG";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
@@ -88,7 +89,7 @@ export default function MyWork() {
       <h2 className="text-4xl md:text-6xl font-bold text-center mb-16">
         My Work
       </h2>
-
+   
       <motion.div
         variants={container}
         initial="hidden"
@@ -96,6 +97,7 @@ export default function MyWork() {
         viewport={{ once: true }}
         className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]"
       >
+        
         {projects.map((project, index) => {
           let gridClasses =
             "relative group overflow-hidden rounded-xl cursor-pointer";
@@ -120,12 +122,12 @@ export default function MyWork() {
                 src={project.image}
                 alt={project.title}
                 loading="lazy"
-               className="w-full h-full object-contain bg-black/40 p-2 transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-75"
+                className="w-full h-full object-contain bg-black/40 p-2 transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-75"
               />
 
               {/* Overlay */}
               <motion.div
-                 className="absolute inset-0 bg-black/60 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300"
+                className="absolute inset-0 bg-black/60 flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300"
                 initial={{ opacity: 0 }}
                 whileHover={{ opacity: 1 }}
               >
@@ -142,6 +144,17 @@ export default function MyWork() {
           );
         })}
       </motion.div>
+      <div className="text-center mt-12">
+          <Link to="/projects">
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 bg-white text-black font-semibold rounded-full shadow-lg hover:bg-gray-200 transition"
+            >
+              View All Projects →
+            </motion.button>
+          </Link>
+        </div>
     </motion.section>
   );
 }
