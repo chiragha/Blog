@@ -34,7 +34,6 @@ const handleSubmit = async (e) => {
       import.meta.env.VITE_EMAIL_PUBLIC_KEY
     );
 
-    console.log(result.text);
 
     alert("Message sent successfully ✅");
 
